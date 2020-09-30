@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "genres",
+  "info": {
+    "name": "Genre"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "dramas": {
+      "collection": "drama",
+      "via": "genres"
+    },
+    "match": {
+      "type": "string"
+    }
+  }
+}

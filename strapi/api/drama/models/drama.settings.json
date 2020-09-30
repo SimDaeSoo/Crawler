@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dramas",
+  "info": {
+    "name": "Drama"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "thumbnail": {
+      "type": "string"
+    },
+    "age": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "time": {
+      "type": "string"
+    },
+    "period": {
+      "type": "string"
+    },
+    "genres": {
+      "via": "dramas",
+      "collection": "genre",
+      "dominant": true
+    }
+  }
+}
