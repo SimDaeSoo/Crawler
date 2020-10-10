@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { withRouter } from 'next/router'
 import { observer, inject } from 'mobx-react';
-import { Tag, Rate, Button, Divider, Badge } from 'antd';
+import { Tag, Rate, Button, Divider, Badge, Empty } from 'antd';
 import { MailOutlined, FormOutlined } from '@ant-design/icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Network from '../utils/network';
 import { getInitializeAuthData } from '../stores/Auth';
 
-const Home = inject('environment', 'auth')(observer(({ environment, auth, router, dramas, reviews }) => {
+const Home = inject('environment', 'auth')(observer(({ environment, auth, router, dramas, reviews, recommendDramas }) => {
   const [_reviews, setReviews] = useState(reviews);
   const [_dramas, setDramas] = useState(dramas);
 
@@ -51,7 +51,11 @@ const Home = inject('environment', 'auth')(observer(({ environment, auth, router
       <div style={{ textAlign: 'center', marginTop: '66px' }}>
         <Divider style={{ opacity: 0.2 }}>추천 드라마</Divider>
         {
-          _dramas.slice(0, 10).map((drama, index) => {
+          !recommendDramas.length &&
+          <Empty />
+        }
+        {
+          recommendDramas.map((drama, index) => {
             const base = drama.thumbnail.split('._')[0].split('https://m.media-amazon.com/images/M/')[1];
             const extension = drama.thumbnail.split('._')[1].split('.')[1];
             const thumbnail = `/assets/${base}.${extension}`;
@@ -142,15 +146,18 @@ const Home = inject('environment', 'auth')(observer(({ environment, auth, router
 export async function getServerSideProps(context) {
   const auth = await getInitializeAuthData(context, { routing: true });
   const dramas = await Network.get('/dramas?_limit=30&_start=0&_sort=id:ASC');
+
   if (auth.user && auth.user.id) {
     const reviews = await Network.get(`/reviews?user=${auth.user.id}&_limit=3000`);
     if (reviews.length < 30) {
       context.res.writeHead(303, { Location: '/review' });
       context.res.end();
     }
-    return { props: { initializeData: { auth, environment: { query: context.query } }, dramas, reviews } };
+
+    const recommendDramas = await Network.get(`/recommend/${auth.user.id}`);
+    return { props: { initializeData: { auth, environment: { query: context.query } }, dramas, reviews, recommendDramas } };
   } else {
-    return { props: { initializeData: { auth, environment: { query: context.query } }, dramas, reviews: [] } };
+    return { props: { initializeData: { auth, environment: { query: context.query } }, dramas, reviews: [], recommendDramas: [] } };
   }
 }
 
