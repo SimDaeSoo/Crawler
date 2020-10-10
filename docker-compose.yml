@@ -16,11 +16,22 @@ services:
   nginx:
     image: nginx
     ports:
-      - 81:80
+      - 8080:80
     depends_on:
       - strapi
     volumes:
       - ./compose/nginx/nginx.conf:/etc/nginx/nginx.conf
+
+  nextjs:
+    build:
+      context: .
+      dockerfile: ./compose/nextjs/Dockerfile-dev
+    command: sh /start-dev.sh
+    environment:
+      - BASE_API_URL=http://strapi:1337
+    volumes:
+      - ./nextjs/:/home/service/nextjs/
+      - nextjs_node_modules:/home/service/nextjs/node_modules/
 
   strapi:
     build:
@@ -43,4 +54,5 @@ services:
 
 volumes:
   mysqldata:
+  nextjs_node_modules:
   strapi_node_modules:

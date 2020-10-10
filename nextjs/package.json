@@ -1,0 +1,47 @@
+{
+  "name": "nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.2.1",
+    "antd": "^4.4.3",
+    "axios": "^0.19.2",
+    "babel-preset-react-app": "^9.1.2",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.2.2",
+    "next": "9.5.4",
+    "querystring": "^0.2.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-infinite-scroll-component": "^5.1.0",
+    "react-lazyload": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-decorators": "^7.10.1"
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
+    ]
+  }
+}

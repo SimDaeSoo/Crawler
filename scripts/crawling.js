@@ -175,7 +175,7 @@ async function getDramas() {
 
 async function download(url) {
   const filename = url.split('https://m.media-amazon.com/images/M/')[1];
-  const fileWriter = fs.createWriteStream(`./thumbnails/${filename}`);
+  const fileWriter = fs.createWriteStream(`../nextjs/public/assets/thumbnails/${filename}`);
   const response = await axios({ url, method: 'GET', responseType: 'stream' });
 
   response.data.pipe(fileWriter);

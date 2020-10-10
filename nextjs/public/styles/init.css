@@ -1,0 +1,264 @@
+@import '~antd/dist/antd.dark.css';
+html,
+body,
+#__next {
+    height: 100%;
+    width: 100%;
+    background-color: #151515;
+    overflow: hidden;
+}
+
+#nprogress {
+    position: relative;
+    z-index: 9999999;
+}
+
+.ant-comment-inner {
+    border: 1px solid #404040;
+    padding: 12px 12px;
+    max-width: 100%;
+    border-radius: 6px;
+    margin: 4px;
+}
+
+.ant-menu-inline .ant-menu-item, .ant-menu-inline .ant-menu-submenu-title {
+    background-color: rgba(30, 30, 30, 0.2);
+}
+
+.ant-layout-sider-zero-width-trigger.ant-layout-sider-zero-width-trigger-left {
+    border: none;
+    top: 0;
+    right: -38px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    z-index: -1;
+    font-size: 1.6em;
+    background: none;
+}
+
+.ant-layout {
+    background-color: #151515;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ant-menu-inline,
+.ant-menu-vertical,
+.ant-menu-vertical-left {
+    border-right: none;
+}
+
+.mirror_x {
+    transform: rotate(0deg);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.owner>.ant-comment-inner{
+    background-color:#151515
+}
+
+.ant-comment-nested {
+    margin-left: 12px;
+}
+
+.ant-tag {
+    touch-action: none;
+}
+
+.tui-editor-contents .lang-youtube,
+.tui-editor-contents .lang-image {
+    margin: 10px auto;
+    padding: 4px;
+}
+
+.ant-layout-sider {
+    z-index: 6;
+    position: absolute;
+    background-color: #141414;
+    height: 100%;
+}
+
+.ant-layout-sider ul {
+    position:'relative'
+}
+
+.ant-layout-sider ul li {
+    position:'relative'
+}
+
+.ant-layout-sider-children {
+    position:'relative';
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.ant-layout-sider-zero-width-trigger:hover {
+    background: none;
+}
+
+.ant-layout-content {
+    flex: none;
+}
+
+.ant-btn-primary {
+    border-color: #434343;
+}
+
+.ant-comment-avatar img {
+    border-radius: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.article_title {
+    font-size: 3.5em;
+    padding: 12px;
+}
+
+.article_description {
+    background-color: #202020;
+    padding: 24px;
+    margin: 10px 0;
+}
+
+.card-description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+}
+
+.ant-card-body {
+    padding: 16px;
+}
+.ant-card-meta-avatar {
+    padding-right: 12px;
+}
+
+.ant-card-meta-description {
+    height: 88px;
+}
+
+.ant-card-actions {
+    border: none;
+}
+
+.ant-card-actions > li {
+    margin: 0;
+    padding: 4px;
+}
+
+.ant-menu-item-selected .ant-tag {
+    border-color: #005db0;
+    color: #177ddc;
+}
+
+.ant-layout-sider-children {
+    background-color: rgba(30,30,30,0.1);
+}
+
+@media (max-width: 425px) {
+    .article_title {
+        font-size: 2em;
+    }
+}
+
+.error-page svg.logo-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -400px;
+  }
+  .error-page .message-box {
+    height: 200px;
+    width: 380px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: 50px;
+    color: #FFF;
+    font-weight: 300;
+  }
+  .error-page .message-box h1 {
+    font-size: 60px;
+    line-height: 46px;
+    margin-bottom: 40px;
+  }
+  .error-page .buttons-con .action-link-wrap {
+    margin-top: 40px;
+  }
+  .error-page .buttons-con .action-link-wrap a {
+    background: #68c950;
+    padding: 8px 25px;
+    border-radius: 4px;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 10px
+  }
+  .error-page .buttons-con .action-link-wrap a:hover {
+    background: #5A5C6C;
+    color: #fff;
+  }
+  
+  #Polygon-1 , #Polygon-2 , #Polygon-3 , #Polygon-4 , #Polygon-4, #Polygon-5 {
+    animation: float 1s infinite ease-in-out alternate;
+  }
+  #Polygon-2 {
+    animation-delay: .2s; 
+  }
+  #Polygon-3 {
+    animation-delay: .4s; 
+  }
+  #Polygon-4 {
+    animation-delay: .6s; 
+  }
+  #Polygon-5 {
+    animation-delay: .8s; 
+  }
+  
+  @keyframes float {
+      100% {
+      transform: translateY(20px);
+    }
+  }
+  @media (max-width: 450px) {
+    .error-page svg.logo-svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -250px;
+      margin-left: -190px;
+    }
+    .error-page .message-box {
+      top: 50%;
+      left: 50%;
+      margin-top: -100px;
+      margin-left: -190px;
+      text-align: center;
+    }
+  }
