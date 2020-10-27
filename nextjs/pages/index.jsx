@@ -7,9 +7,10 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Network from '../utils/network';
 import { getInitializeAuthData } from '../stores/Auth';
 
-const Home = inject('environment', 'auth')(observer(({ environment, auth, router, dramas, reviews, recommendDramas }) => {
+const Home = inject('environment', 'auth')(observer(({ environment, auth, router, dramas, reviews, recommendDramas, simillarities }) => {
   const [_reviews, setReviews] = useState(reviews);
   const [_dramas, setDramas] = useState(dramas);
+  console.log(simillarities);
 
   const fetchData = async () => {
     const newDramas = await Network.get(`/dramas?_limit=30&_start=${_dramas.length}&_sort=id:ASC`);
@@ -149,15 +150,15 @@ export async function getServerSideProps(context) {
 
   if (auth.user && auth.user.id) {
     const reviews = await Network.get(`/reviews?user=${auth.user.id}&_limit=3000`);
-    if (reviews.length < 30) {
+    if (reviews.length < 10) {
       context.res.writeHead(303, { Location: '/review' });
       context.res.end();
     }
 
-    const recommendDramas = await Network.get(`/recommend/${auth.user.id}`);
-    return { props: { initializeData: { auth, environment: { query: context.query } }, dramas, reviews, recommendDramas } };
+    const { dramas, simillarities } = await Network.get(`/recommend/${auth.user.id}`);
+    return { props: { initializeData: { auth, environment: { query: context.query } }, dramas, reviews, recommendDramas: dramas, simillarities } };
   } else {
-    return { props: { initializeData: { auth, environment: { query: context.query } }, dramas, reviews: [], recommendDramas: [] } };
+    return { props: { initializeData: { auth, environment: { query: context.query } }, dramas, reviews: [], recommendDramas: [], simillarities: {} } };
   }
 }
 

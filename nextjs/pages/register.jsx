@@ -23,7 +23,7 @@ const Register = inject('auth')(observer(({ router, jobs, auth }) => {
   return (
     <div id='scrollableDiv' className="container" style={{ width: '100%', height: '100%', overflowY: 'auto', display: 'flex' }}>
       <div style={{ width: '400px', maxWidth: '95%', margin: 'auto' }}>
-        <h1 style={{ textAlign: 'center' }}>영화 추천 시스템 회원가입</h1>
+        <h1 style={{ textAlign: 'center' }}>드라마 추천 시스템 회원가입</h1>
         <Form
           layout='vertical'
           initialValues={{ age: 20 }}

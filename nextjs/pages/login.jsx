@@ -34,7 +34,7 @@ const Login = inject('auth')(observer(({ router, auth }) => {
   return (
     <div className="container" style={{ width: '100%', height: '100%', overflowY: 'auto', display: 'flex' }}>
       <div style={{ width: '300px', maxHeight: '90%', margin: 'auto', textAlign: 'center' }}>
-        <h1>영화 추천 시스템</h1>
+        <h1>드라마 추천 시스템</h1>
         <Input value={email} onChange={e => changeEmail(e)} placeholder="이메일" />
         <Input.Password value={password} onChange={e => changePassword(e)} placeholder="비밀번호" />
         <Button type='primary' onClick={() => login()} style={{ width: '130px', margin: '10px' }}>로그인</Button>

@@ -15,7 +15,7 @@ const App = ({ Component, pageProps }) => {
 
     return (
         <Provider {...store}>
-            <Head title={'Movie Recommend'}/>
+            <Head title={'Drama Recommend'}/>
             <Component {...pageProps} />
         </Provider>
     )

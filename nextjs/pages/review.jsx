@@ -11,7 +11,7 @@ const Review = inject('auth')(observer(({ auth, router, dramas, reviews }) => {
   const [_reviews, setReviews] = useState(reviews);
   const [_dramas, setDramas] = useState(dramas);
   useEffect(() => {
-    if (reviews.length < 30) {
+    if (reviews.length < 10) {
       message.info('비교할 평점 데이터가 부족합니다.', 5);
       message.info('자신이 보았던 드라마에 점수를 주세요!', 5);
     } else {
@@ -39,7 +39,7 @@ const Review = inject('auth')(observer(({ auth, router, dramas, reviews }) => {
     }
 
     const allReviews = await Network.get(`/reviews?user=${auth.user.id}&_limit=3000`);
-    if (allReviews.length >= 30) {
+    if (allReviews.length >= 10) {
       message.success('추천 데이터가 충분하여 홈으로 이동합니다.');
       router.push('/', '/');
     }
@@ -62,9 +62,9 @@ const Review = inject('auth')(observer(({ auth, router, dramas, reviews }) => {
       </div>
 
       {
-        _reviews.length < 30 &&
+        _reviews.length < 10 &&
         <div style={{ position: 'fixed', zIndex: 4, bottom: 0, width: '100%', height: '32px', textAlign: 'center', background: 'rgba(0,0,0,0.5)', padding: '4px', paddingRight: '16px' }}>
-          <Progress percent={Math.round(_reviews.length / 30 * 100)} status="active" />
+          <Progress percent={Math.round(_reviews.length / 10 * 100)} status="active" />
         </div>
       }
 

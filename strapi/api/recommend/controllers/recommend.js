@@ -45,24 +45,25 @@ module.exports = {
 
       for (const userReview of userReviews) {
         if (!resultIdDictionary[userReview.drama.id]) {
-          resultIdDictionary[userReview.drama.id] = userReview.rate * simillarity.simillarity;
-        } else if (resultIdDictionary[userReview.drama.id] < userReview.rate * simillarity.simillarity) {
-          resultIdDictionary[userReview.drama.id] = userReview.rate * simillarity.simillarity;
+          resultIdDictionary[userReview.drama.id] = { rate: userReview.rate * simillarity.simillarity, count: 1 };
+        } else {
+          resultIdDictionary[userReview.drama.id].count++;
+          resultIdDictionary[userReview.drama.id].rate += userReview.rate * simillarity.simillarity;
         }
       }
     }
 
     const dramaIDs = Object.keys(resultIdDictionary);
-    dramaIDs.sort((idA, idB) => resultIdDictionary[idA] < resultIdDictionary[idB] ? 1 : -1);
+    dramaIDs.sort((idA, idB) => resultIdDictionary[idA].rate / resultIdDictionary[idA].count < resultIdDictionary[idB].rate / resultIdDictionary[idB].count ? 1 : -1);
 
     if (dramaIDs.length > 10) {
       dramaIDs.splice(10, dramaIDs.length);
     }
 
     const dramas = await strapi.query('drama').find({ id_in: dramaIDs });
-    dramas.sort((dramaA, dramaB) => resultIdDictionary[dramaA.id] < resultIdDictionary[dramaB.id] ? 1 : -1);
+    dramas.sort((dramaA, dramaB) => resultIdDictionary[dramaA.id].rate / resultIdDictionary[dramaA.id].count < resultIdDictionary[dramaB.id].rate / resultIdDictionary[dramaB.id].count ? 1 : -1);
 
-    ctx.send(dramas);
+    ctx.send({ dramas, simillarities: resultIdDictionary });
   }
 };
 
